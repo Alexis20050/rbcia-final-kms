@@ -23,7 +23,7 @@ Use Profile → Log out to switch roles. A second bookkeeper, `lea@demo.veritas.
 ## What is included
 
 - 25 fictional clients; four fictional staff accounts; client assignments and onboarding checklists.
-- 50 document records; five document requirement templates; 75 linked requirements. Local file upload stores small files in this browser; text, images, and PDFs can be previewed. Record status and matching checklist completion change together when approved.
+- 50 document records; five document requirement templates; 75 client requirements. Local file upload stores small files in this browser; text, images, and PDFs can be previewed. Linked requirement completion changes when an approved document is linked and validated. Seeded historical requirements are illustrative.
 - A separate chart of accounts for each client, two account templates, accounting year and period display, balanced journal lines, review/return/post workflow, linked vouchers of types JV, CV, CR, and CD, General Ledger, Trial Balance, Income Statement, Balance Sheet, and Accounts Ledger. Financial reports include **posted** journal lines only.
 - Compliance records and follow-ups, calculated client submission deadlines, per-record overrides with reasons, live overdue calculations, invoice items, partial payments, outstanding balances, printable invoice and voucher pages, articles, notices, notifications, activity, audit records, workspace settings and CSV exports.
 - Search, filtering, sorting, pagination, confirmation dialogs, toasts, responsive navigation, and Reset Demo Data.
@@ -43,14 +43,14 @@ The client submission deadline defaults to 10 calendar days before filing, match
 | Notifications and notices | In-app demo records only; no email or SMS. |
 | Accounting period creation and closing | Unavailable in the original web interface; displayed as unavailable. |
 | Backup and recovery | No web page; the source application handles these through Artisan commands. |
-| Account template initialization | Missing account codes can be copied to a selected client's chart. Existing account codes remain in place. |
+| Account template initialization | Owner-only. Conflicting client account codes stop initialization; previously initialized template items can be recognized by provenance. |
 
 Reset Demo Data in the Owner's Workspace settings restores the original sample dataset and discards browser edits. Reset affects only this demo's localStorage key.
 
 ## Verification
 
-Run `node tests/workflows.cjs` for dependency-free logic and rendering checks. The frontend itself does not require Node. `tests/browser-smoke.html` and `tests/mobile-smoke.html` are visual check pages; the latter frames the signed-in dashboard at 390 px. See [TEST_REPORT.md](TEST_REPORT.md) for results and limits.
+Run `node tests/workflows.cjs` for dependency-free logic and rendering checks. The frontend itself does not require Node. `tests/browser-audit.html`, `tests/browser-onboarding.html`, and `tests/browser-accounting-billing.html` run actual browser role and workflow checks; `tests/browser-smoke.html` and `tests/mobile-smoke.html` are visual check pages, with a 390 px signed-in dashboard frame. See [TEST_REPORT.md](TEST_REPORT.md), [USE_CASE_AUDIT.md](USE_CASE_AUDIT.md), [WORKFLOW_TEST_RESULTS.md](WORKFLOW_TEST_RESULTS.md), [VISUAL_COMPARISON.md](VISUAL_COMPARISON.md), and [REMAINING_GAPS.md](REMAINING_GAPS.md) for results and limits.
 
 ## Source reference
 
-The design and navigation were checked against the local Veritas Core source at `C:\laragon\www\veritas-core`: `public/styles.css`, Blade views for the login, dashboard, records, settings and reports, routes, `config/compliance.php`, and `docs/RBAC.md`. The demo copies the navy/gold palette, sidebar order, card/table patterns, and primary role restrictions. It remains a frontend recreation, so it does not claim pixel-identical rendering or production-equivalent behavior. The Laravel project was not modified.
+The final fidelity audit used the local Veritas Core source at `C:\Users\alexi\RBCIA\veritas-core`, branch `feature/increment-8`: `public/styles.css`, Blade views, routes, controllers, policies, services, `config/rbac.php`, `config/compliance.php`, and the final use case documentation. The demo follows the navy/gold palette, sidebar order, card/table patterns, and policy-specific role restrictions. Source views and CSS were inspected, but equivalent authenticated source screenshots were unavailable, so pixel-identical rendering is unproven. The Laravel project was not modified.
